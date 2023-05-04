@@ -1,11 +1,11 @@
 #include "mlx90640.hpp"
 #include <math.h>
 
-// static int MLX90640_I2CRead(std::uint8_t, std::uint16_t, std::uint16_t,
-//                            std::uint16_t *){};
-// static int MLX90640_I2CWrite(std::uint8_t, std::uint16_t, std::uint16_t){};
-// static int MLX90640_I2CGeneralReset(){};
-// auto slaveAddr = 0;
+static int MLX90640_I2CRead(std::uint8_t, std::uint16_t, std::uint16_t,
+                            std::uint16_t *){};
+static int MLX90640_I2CWrite(std::uint8_t, std::uint16_t, std::uint16_t){};
+static int MLX90640_I2CGeneralReset(){};
+auto slaveAddr = 0;
 
 int MLX90640::DumpEE(std::vector<std::uint16_t> &eeData) {
   // return MLX90640_I2CRead(slaveAddr, MLX90640_EEPROM_START_ADDRESS,
@@ -137,7 +137,7 @@ int MLX90640::GetFrameData(std::vector<std::uint16_t> &frameData) {
   return frameData[833];
 }
 
-int MLX90640::ValidateFrameData(uint16_t *frameData) {
+int MLX90640::ValidateFrameData(std::vector<uint16_t> &frameData) {
   uint8_t line = 0;
 
   for (int i = 0; i < MLX90640_PIXEL_NUM; i += MLX90640_LINE_SIZE) {

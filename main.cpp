@@ -1,6 +1,6 @@
 
 #include <fcntl.h>
-#include <fmt/core.h>
+#include <iostream>
 #include <optional>
 #include <string>
 #include <type_traits>
@@ -11,15 +11,20 @@
 
 int main() {
   std::uint8_t i2c_number = 1;
-  auto filename = fmt::format("/dev/i2c-{}", i2c_number);
+  auto filename = "/dev/i2c-1";
 
   i2c::MLX_I2C mlx_i2c(filename, mlx::i2c::mlx_i2c_addr);
-  mlx_i2c.init();
+  if (!mlx_i2c.init()) {
+    std::cout << "That was nothing" << std::endl;
+    return 0;
+  }
 
   while (true) {
     auto status_register = mlx_i2c.read_word(mlx::reg::status::REG_ADDR);
 
-    fmt::print("Status reg: 0x{} \n", status_register.value());
+    if (status_register)
+      std::cout << "SREG: " << status_register.value() << std::endl;
+
     sleep(1);
   }
 

@@ -68,7 +68,7 @@ private:
   int CheckAdjacentPixels(uint16_t pix1, uint16_t pix2);
   float GetMedian(float *values, int n);
   int IsPixelBad(uint16_t pixel, paramsMLX90640 *params);
-  int ValidateFrameData(uint16_t *frameData);
+  int ValidateFrameData(std::vector<uint16_t> &frameData);
   int ValidateAuxData(uint16_t *auxData);
 
   std::unique_ptr<i2c::MLX_I2C> mlx_i2c_;

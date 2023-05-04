@@ -30,7 +30,7 @@ static constexpr std::uint16_t MLX90640_AUX_NUM = 64;
 static constexpr std::uint16_t MLX90640_STATUS_REG = 0x8000;
 static constexpr std::uint16_t MLX90640_INIT_STATUS_VALUE = 0x0030;
 #define MLX90640_STAT_FRAME_MASK BIT_MASK(0)
-#define MLX90640_GET_FRAME(reg_value) (reg_value & MLX90640_STAT_FRAME_MASK)
+#define MLX90640_GET_FRAME(reg_value) 0 //(reg_value & MLX90640_STAT_FRAME_MASK)
 #define MLX90640_STAT_DATA_READY_MASK BIT_MASK(3)
 #define MLX90640_GET_DATA_READY(reg_value)                                     \
   (reg_value & MLX90640_STAT_DATA_READY_MASK)
